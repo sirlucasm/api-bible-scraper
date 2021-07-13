@@ -1,0 +1,23 @@
+{
+	"name": "my-web-crawler",
+	"version": "1.0.0",
+	"description": "A project with my several web crawlers",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js"
+	},
+	"repository": "https://github.com/sirlucasm/my-web-crawlers",
+	"author": "sirlucasm",
+	"license": "MIT",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"cheerio": "^1.0.0-rc.10",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"fs": "^0.0.1-security"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.12"
+	}
+}
