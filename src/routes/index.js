@@ -4,6 +4,6 @@ const app = express();
 
 const bibliaOnlineRoute = require('./bibliaonline');
 
-app.use('/users', bibliaOnlineRoute);
+app.use('/bibliaonline', bibliaOnlineRoute);
 
 module.exports = app;

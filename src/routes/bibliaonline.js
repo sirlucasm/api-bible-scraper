@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/create',
-	(req, res) => {
-		res.send('teste');
-	}
-);
+// controllers
+const BibliaOnlineController = require('../controllers/BibliaOnlineController');
+
+
+router.get('/', BibliaOnlineController.index);
+router.get('/books', BibliaOnlineController.getBooks);
 
 module.exports = router;
