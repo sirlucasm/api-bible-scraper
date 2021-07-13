@@ -1,13 +1,13 @@
 {
-	"name": "my-web-crawler",
+	"name": "my-web-scraper",
 	"version": "1.0.0",
-	"description": "A project with my several web crawlers",
+	"description": "A project with my several web scrapers",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
 		"dev": "nodemon index.js"
 	},
-	"repository": "https://github.com/sirlucasm/my-web-crawlers",
+	"repository": "https://github.com/sirlucasm/my-web-scrapers",
 	"author": "sirlucasm",
 	"license": "MIT",
 	"dependencies": {
@@ -15,7 +15,8 @@
 		"cheerio": "^1.0.0-rc.10",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
-		"fs": "^0.0.1-security"
+		"fs": "^0.0.1-security",
+		"pouchdb": "^7.2.2"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.12"
