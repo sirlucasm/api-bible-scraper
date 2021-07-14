@@ -2,8 +2,8 @@
 const express = require('express');
 const app = express();
 
-const bibliaOnlineRoute = require('./bibliaonline');
+const bibliaApiRoute = require('./bibliaapi');
 
-app.use('/bibliaonline', bibliaOnlineRoute);
+app.use('/bibliaapi', bibliaApiRoute);
 
 module.exports = app;

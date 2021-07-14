@@ -1,21 +1,21 @@
-const BibliaOnlineService = require('../services/BibliaOnlineService');
+const BibliaApiService = require('../services/BibliaApiService');
 
 const { AppUtils } = require('../utils');
 const PouchDB = require('pouchdb');
-const db = new PouchDB(`src/database/${BibliaOnlineService.getAppInfo.SCRAPER_SIMPLE_TITLE}`);
+const db = new PouchDB(`src/database/${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`);
 
 module.exports = {
 	index: (req, res) => {
-		res.send(BibliaOnlineService.getAppInfo.SCRAPER_TEXT);
+		res.send(BibliaApiService.getAppInfo.SCRAPER_TEXT);
 	},
 
 	getAllBooks: async (req, res) => {
 		try {
 			const { bibleType } = req.params;
-			const books = await BibliaOnlineService.getAllBooks(bibleType);
+			const books = await BibliaApiService.getAllBooks(bibleType);
 
 			db.put(books)
-				.then(() => console.log(`saved to ${BibliaOnlineService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
+				.then(() => console.log(`saved to ${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
 				.catch(console.error);
 
 			return res.json(books);
@@ -27,10 +27,10 @@ module.exports = {
 	getBooks: async (req, res) => {
 		try {
 			const { bibleType } = req.params;
-			const books = await BibliaOnlineService.getBooks(bibleType);
+			const books = await BibliaApiService.getBooks(bibleType);
 
 			db.put(books)
-				.then(() => console.log(`saved to ${BibliaOnlineService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
+				.then(() => console.log(`saved to ${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
 				.catch(console.error);
 
 			return res.json(books);
@@ -46,13 +46,13 @@ module.exports = {
 			const books = await db.get('allBooks');
 			const book = books.data.find(data => data.simpleName == bookName);
 
-			const chapters = await BibliaOnlineService.getChapters(bibleType, book.shortName);
+			const chapters = await BibliaApiService.getChapters(bibleType, book.shortName);
 			book._id = 'chapters';
 			book.bibleType = bibleType;
 			book.chapters = chapters;
 
 			db.put(book)
-				.then(() => console.log(`saved to ${BibliaOnlineService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
+				.then(() => console.log(`saved to ${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
 				.catch(console.error);
 
 			return res.send(book);
@@ -68,13 +68,13 @@ module.exports = {
 			const books = await db.get('allBooks');
 			const book = books.data.find(data => data.simpleName == bookName);
 
-			const verses = await BibliaOnlineService.getVerses(bibleType, book.shortName, chapterNumber);
+			const verses = await BibliaApiService.getVerses(bibleType, book.shortName, chapterNumber);
 			book._id = 'verses';
 			book.chapter = chapterNumber;
 			book.verses = verses;
 
 			db.put(book)
-				.then(() => console.log(`saved to ${BibliaOnlineService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
+				.then(() => console.log(`saved to ${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
 				.catch(console.error);
 
 			return res.send(book);

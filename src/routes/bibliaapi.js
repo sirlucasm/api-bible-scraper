@@ -1,0 +1,14 @@
+const express = require('express');
+const router = express.Router();
+
+// controllers
+const BibliaApiController = require('../controllers/BibliaApiController');
+
+
+router.get('/', BibliaApiController.index);
+router.get('/:bibleType/books/all', BibliaApiController.getAllBooks);
+router.get('/:bibleType/books', BibliaApiController.getBooks);
+router.get('/:bibleType/:bookName/chapters', BibliaApiController.getChapters);
+router.get('/:bibleType/:bookName/:chapterNumber', BibliaApiController.getVerses);
+
+module.exports = router;

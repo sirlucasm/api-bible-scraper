@@ -1,5 +1,5 @@
 const {	AppUtils } = require('../utils');
-const { SCRAPER_TEXT, SCRAPER_SIMPLE_TITLE, SCRAPER_TITLE, SCRAPER_URL} = AppUtils.appInfo('Biblia Online', 'https://bibliaonline.com.br');
+const { SCRAPER_TEXT, SCRAPER_SIMPLE_TITLE, SCRAPER_TITLE, SCRAPER_URL} = AppUtils.appInfo('Biblia API');
 
 const axios = require('axios');
 const cheerio = require('cheerio');
