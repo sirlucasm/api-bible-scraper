@@ -1,0 +1,38 @@
+[
+	{
+		"name": "Almeida Revista e Atualizada",
+		"shortName": "ara"
+	},
+	{
+		"name": "Almeida Corrigida Fiel",
+		"shortName": "acf"
+	},
+	{
+		"name": "Almeida Revista e Corrigida",
+		"shortName": "arc"
+	},
+	{
+		"name": "King James Version",
+		"shortName": "kjv"
+	},
+	{
+		"name": "Nova Almeida Atualizada",
+		"shortName": "naa"
+	},
+	{
+		"name": "Nova Versão Internacional",
+		"shortName": "nvi"
+	},
+	{
+		"name": "Nova Versão Transformadora",
+		"shortName": "nvt"
+	},
+	{
+		"name": "O Livro",
+		"shortName": "ol"
+	},
+	{
+		"name": "Sociedade Bíblica Britânica",
+		"shortName": "tb"
+	}
+]

@@ -1,6 +1,6 @@
 const BibliaApiService = require('../services/BibliaApiService');
 
-const { AppUtils } = require('../utils');
+const Bibles = require('../configs/bibles.json');
 const PouchDB = require('pouchdb');
 const db = new PouchDB(`src/database/${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`);
 
@@ -55,7 +55,7 @@ module.exports = {
 				.then(() => console.log(`saved to ${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
 				.catch(console.error);
 
-			return res.send(book);
+			return res.json(book);
 		} catch (error) {
 			return res.status(500).json({ message: error.message })
 		}
@@ -77,7 +77,24 @@ module.exports = {
 				.then(() => console.log(`saved to ${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
 				.catch(console.error);
 
-			return res.send(book);
+			return res.json(book);
+		} catch (error) {
+			return res.status(500).json({ message: error.message })
+		}
+	},
+
+	getBibles: async (req, res) => {
+		try {
+			db.put({
+				_id: 'bibles',
+				data: Bibles 
+			})
+				.then(() => console.log(`saved to ${BibliaApiService.getAppInfo.SCRAPER_SIMPLE_TITLE}`))
+				.catch(console.error);
+
+			const bibles = await db.get('bibles');
+
+			return res.json(bibles);
 		} catch (error) {
 			return res.status(500).json({ message: error.message })
 		}
