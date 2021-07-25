@@ -12,63 +12,24 @@ module.exports = {
 		SCRAPER_URL
 	},
 
-	getAllBooks: async (bibleType) => {
-		try {
-			const { data } = await axios.get(`${SCRAPER_URL}/${bibleType}/index`);
-			const $ = cheerio.load(data);
-
-			const books = {
-				_id: 'allBooks',
-				bibleType
-			};
-			const arrayBooks = [];
-			let book = {};
-
-			$('.jss3 li').each((index, element) => {
-				let name = $(element.children).text();
-				book = {
-					name,
-					shortName: $(element.children).attr().href.split(`${bibleType}/`)[1],
-					simpleName: AppUtils.convertToSimpleString(name)
-				};
-				arrayBooks.push(book);
-				books.data = arrayBooks;
-			});
-
-			return books;
-		} catch (error) {
-			return Promise.reject(error);
-		}
-	},
-
 	getBooks: async (bibleType) => {
 		try {
 			const { data } = await axios.get(`${SCRAPER_URL}/${bibleType}/index`);
 			const $ = cheerio.load(data);
 
-			const books = {
-				_id: 'books',
-				bibleType
-			};
-			const oldTestament = [];
-			const newTestament = [];
+			const books = [];
 			let book = {};
 
 			$('.jss3 li').each((index, element) => {
 				let name = $(element.children).text();
 				book = {
+					id: index,
 					name,
+					testament: index < 39 ? 'old' : 'new',
 					shortName: $(element.children).attr().href.split(`${bibleType}/`)[1],
 					simpleName: AppUtils.convertToSimpleString(name)
 				};
-				if (index < 39) { // OLD TESTAMENT
-					oldTestament.push(book);
-					books.oldTestament = oldTestament;
-				}
-				if (index >= 39) { // NEW TESTAMENT
-					newTestament.push(book);
-					books.newTestament = newTestament;
-				}
+				books.push(book);
 			});
 
 			return books;

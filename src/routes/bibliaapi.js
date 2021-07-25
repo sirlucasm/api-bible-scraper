@@ -7,7 +7,6 @@ const BibliaApiController = require('../controllers/BibliaApiController');
 
 router.get('/', BibliaApiController.index);
 router.get('/bibles', BibliaApiController.getBibles);
-router.get('/:bibleType/books/all', BibliaApiController.getAllBooks);
 router.get('/:bibleType/books', BibliaApiController.getBooks);
 router.get('/:bibleType/:bookName/chapters', BibliaApiController.getChapters);
 router.get('/:bibleType/:bookName/:chapterNumber', BibliaApiController.getVerses);
